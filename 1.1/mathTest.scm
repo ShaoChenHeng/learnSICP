@@ -1,0 +1,3 @@
+; mathTest
+(display "HelloWorld")
+(exit)
