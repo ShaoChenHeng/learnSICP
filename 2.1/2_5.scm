@@ -1,0 +1,30 @@
+(define (cons x y )
+    (* ( expt 2 x )
+       ( expt 3 y )
+    )
+)
+
+(define (car m )
+    (define (iter tmp result )  
+        (if (not ( = ( remainder tmp 2 ) 0 ))
+            result
+            ( iter ( / tmp 2 ) ( + result 1 ) )
+        )
+    )
+    (iter m 0)
+)
+
+(define (cdr m )
+    (define (iter tmp result )  
+        (if (not ( = ( remainder tmp 3 ) 0 ))
+            result
+            ( iter ( / tmp 3 ) ( + result 1 ) )
+        )
+    )
+    (iter m 0)
+)
+
+( newline )
+(display (car ( cons 2 4 )))
+( newline )
+(display (cdr ( cons 2 4 )))

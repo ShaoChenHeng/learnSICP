@@ -1,0 +1,5 @@
+(define (add-interval x y )
+    ( - ( lower-bound x ) ( lower-bound y )
+      - ( upper-bound x ) ( upper-bound y )
+    )
+)

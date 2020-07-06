@@ -1,0 +1,23 @@
+(define (reverse list )
+    (define (iter list1 result )
+        (if ( null? list1 )
+            result
+            ( iter ( cdr list1 ) ( cons ( car list1 ) result ) )
+        )
+    )
+    ( iter list '() )
+)
+
+(define (square-list items)
+    (define (iter things answer )
+        (if ( null? things )
+            (reverse answer)
+            (iter ( cdr things )
+                  ( cons ( square ( car things ) ) answer )
+            )
+        )
+    )
+    ( iter items (list) )
+)
+
+(square-list (list 1 2 3 4))

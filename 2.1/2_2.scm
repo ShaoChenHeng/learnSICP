@@ -1,0 +1,48 @@
+(define (start-point seg )( car seg ))
+(define (end-point seg )( cdr seg ))
+
+(define (x-point a )( car a ))
+(define (y-point a )( cdr a ))
+
+(define (make-point x y ) ( cons x y ) )
+(define (make-segment x y ) ( cons x y ) )
+
+(define one-three ( make-point 1 3 ) )
+(define one-six ( make-point 1 6 ) )
+(define two-one ( make-point 2 1 ) )
+
+(define (print-point p )
+    ( newline )
+    ( display "(" )
+    ( display ( x-point p ) )
+    ( display "." )
+    ( display ( y-point p ) )
+    ( display ")" )
+)
+
+(define (add-point p q )
+    (make-point ( + ( x-point q ) ( x-point p ) )
+                ( + ( y-point q ) ( y-point p ) )
+    )
+)
+
+(define (mid-point p q )
+    ( make-point (/ ( x-point ( add-point p q ) ) 2 )
+                 (/ ( y-point ( add-point p q ) ) 2 )
+    )
+)
+
+(define (average x y ) ( / ( + x y ) 2))
+
+(define (mid-segment seg )
+    (let( ( start ( start-point seg ) )
+          ( end ( end-point seg )  )
+        )
+        (make-point (average (x-point start) ( x-point end ) ) 
+                     (average ( y-point start ) ( y-point end ) ) 
+        )
+    )
+)
+( define seg1 ( make-segment one-six two-one ) )
+( display ( mid-segment seg1 ) )
+;(display ( mid-point one-six two-one  ) )
