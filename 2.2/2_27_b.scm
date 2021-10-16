@@ -1,3 +1,5 @@
+;; Binary Tree
+
 (define (empty-tree? tree) ( null? tree ))
 
 (define (leaf? tree ) ( not (pair? tree) ))
@@ -7,8 +9,7 @@
 (define (right-branch tree) (cadr tree))
 
 (define (make-tree left-branch right-branch ) 
-    (list left-branch right-branch )  
-)
+    (list left-branch right-branch ))
 
 (define (better-deep-reverse tree )
     (cond ( (empty-tree? tree) '() )
