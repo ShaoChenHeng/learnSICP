@@ -1,0 +1,5 @@
+(define (permutations s)
+  (if (null? s)
+      (list '())
+      (flatmap (lambda (x)
+		 ))))
