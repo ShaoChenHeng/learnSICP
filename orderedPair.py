@@ -40,7 +40,7 @@ def mapping_n(func, *seqs):
             return None
         else:
             return cons(f(*seq_trans(car_n(seq))), _map(f, cdr_n(seq)))
-
+        
     if len(seqs) > 1:
         seqs = lister(*seqs)
     else:
@@ -52,3 +52,36 @@ def car_n(item):
 
 def cdr_n(item):
     return mapping(cdr, item)
+
+def add(num1, num2):
+    return num1 + num2
+
+def mul(num1, num2):
+    return num1 * num2
+
+def square(x):
+    return x * x
+
+def mod(a, b):
+    return a % b
+
+# Miller-Rabin
+def is_prime(n):
+    def smallest_divisor(n):
+        return find_divisor(n, 2)
+
+    def is_divides(a, b):
+        return mod(b, a) == 0
+    
+    def find_divisor(n, test_divisor):
+        if square(test_divisor) > n:
+            return n
+        elif is_divides(test_divisor, n):
+            return test_divisor
+        return find_divisor(n, test_divisor + 1)
+
+    if n == 1:
+        return False
+    return n == smallest_divisor(n)
+
+
