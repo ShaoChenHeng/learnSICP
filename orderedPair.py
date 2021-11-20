@@ -1,5 +1,5 @@
 def is_null(item):
-    return item == None
+    return item is None
 
 def cons(a, b):
     return (a, b)
@@ -21,10 +21,31 @@ def lister(*args):
     return coner(first, other)
 
 def mapping(func, item):
-    if item is None:
+    if is_null(item):
         return None
     else:
         return cons(func(car(item)), mapping(func, cdr(item)))
+
+def mapping_n(func, *seqs):
+    def seq_trans(seq):
+        def translator(s):
+            if is_null(cdr(s)):
+                return [car(s)]
+            else:
+                return [car(s)]+translator(cdr(s))
+        return tuple(translator(seq))
+
+    def _map(f, seq):
+        if is_null(car(seq)):
+            return None
+        else:
+            return cons(f(*seq_trans(car_n(seq))), _map(f, cdr_n(seq)))
+
+    if len(seqs) > 1:
+        seqs = lister(*seqs)
+    else:
+        seqs = seqs[0]  
+    return _map(func, seqs)
 
 def car_n(item):
     return mapping(car, item)
