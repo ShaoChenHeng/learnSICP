@@ -53,6 +53,16 @@ def car_n(item):
 def cdr_n(item):
     return mapping(cdr, item)
 
+def append(seq1, seq2):
+    if is_null(seq1):
+        return seq2
+    return cons(car(seq1), append(cdr(seq1), seq2))
+
+def remove(item, sequence):
+    return filter_(lambda x:
+                   (x != item),
+                   sequence)
+
 def add(num1, num2):
     return num1 + num2
 
@@ -84,4 +94,10 @@ def is_prime(n):
         return False
     return n == smallest_divisor(n)
 
+def filter_(predicate, sequence):
+    if is_null(sequence):
+        return None
+    elif predicate(car(sequence)):
+        return cons(car(sequence), filter_(predicate, cdr(sequence)))
+    return  filter_(predicate, cdr(sequence))
 
