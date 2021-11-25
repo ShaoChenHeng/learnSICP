@@ -1,0 +1,48 @@
+(define (element-of-set? x set)
+  (cond ((null? set) #f)
+	((= x (car set)) #t)
+	((< x (car set)) #f)
+	(else (element-of-set? x (cdr set)))))
+
+(define (intersection-set set1 set2)
+  (if (or (null? set1) (null? set2))
+      '()
+      (let ((x1 (car set1)) (x2 (car set2)))
+	(cond ((= x1 x2)
+	       (cons x1
+		     (intersection-set (cdr set1)
+				       (cdr set2))))
+	      ((< x1 x2)
+	       (intersection-set (cdr set1) set2))
+	      ((< x2 x1)
+	       (intersection-set set1 (cdr set2)))))))
+
+(define (adjoin-set x set)
+  (if (null? set) (list x)
+      (let ((current-element (car set))
+	    (remain-element (cdr set)))
+	(cond ((= x current-element) set)
+	      ((> x current-element)
+	       (cons current-element
+		     (adjoin-set x remain-element)))
+	      ((< x current-element)
+	       (cons x set))))))
+
+
+(define (union-set set another)
+  (cond ((and (null? set) (null? another))
+	 '())
+	((null? set) another)
+	((null? another) set)
+	(else
+	 (let ((x (car set)) (y (car another)))
+	   (cond ((= x y)
+		  (cons x (union-set (cdr set) (cdr another))))
+		 ((< x y)
+		  (cons x (union-set (cdr set) another)))
+		 ((> x y)
+		  (cons y (union-set set (cdr another)))))))))
+
+(define s1 (list 1 2 3 4))
+(define s2 (list 3 4 5 6))
+(define s3 (list 3 5 7 9 10 11))
