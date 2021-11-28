@@ -20,6 +20,13 @@ def lister(*args):
     first, other = L[0], L[1:]
     return coner(first, other)
 
+def length(elements):
+    def _iter(elements, res):
+        if is_null(elements):
+            return res
+        return _iter(cdr(elements), res + 1)
+    return _iter(elements, 0)
+
 def mapping(func, item):
     if is_null(item):
         return None
