@@ -27,6 +27,13 @@ def length(elements):
         return _iter(cdr(elements), res + 1)
     return _iter(elements, 0)
 
+def findding(func, item):
+    if is_null(item):
+        return False
+    elif func(car(item)):
+        return True
+    return findding(func, cdr(item))
+
 def mapping(func, item):
     if is_null(item):
         return None
@@ -108,3 +115,7 @@ def filter_(predicate, sequence):
         return cons(car(sequence), filter_(predicate, cdr(sequence)))
     return  filter_(predicate, cdr(sequence))
 
+def is_equal(a, b):
+    if a == b:
+        return True
+    return False
