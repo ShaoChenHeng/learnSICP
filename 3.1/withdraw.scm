@@ -1,8 +1,8 @@
 
-(define blance 100)
+(define balance 100)
 
 (define (widthraw amount)
-  (if (>= blance amount)
-      (begin (set! blance (- balance amount))
+  (if (>= balance amount)
+      (begin (set! balance (- balance amount))
 	     balance)
       "Insufficient funds"))
