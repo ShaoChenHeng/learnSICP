@@ -38,4 +38,3 @@
 
 (define (make-from-mag-ang r a)
   (cons r a))
-

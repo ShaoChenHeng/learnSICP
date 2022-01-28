@@ -1,3 +1,4 @@
+(load "2-4-2.scm")
 ;; (make-from-real-imag (real-part z) (imag-part z))
 
 ;; (make-from-mag-ang (magnitude s) (angle z))
@@ -43,4 +44,25 @@
 				 (imag-part z1)))
 (define minus-zz1 (make-from-real-imag (real-part minus-z1)
 				       (imag-part minus-z1)))
+
+
+(define (real-part-rectangular z) (car z))
+
+(define (imag-part-rectangular z) (cdr z))
+
+(define (magnitude-rectangular z)
+  (sqrt ( + (square (real-part-rectangular z))
+	    (square (imag-part-rectangular z)))))
+
+(define (angle-rectangular z)
+  (atan (imag-part-rectangular z)
+	(real-part-rectangular z)))
+
+(define (make-from-real-imag-rectangular x y)
+  (attach-tag 'rectangular (cons x y)))
+
+(define (make-from-mag-ang-rectangular r a)
+  (attach-tag 'rectangular
+	      (cons (* r (cos a)) (* r (sin a)))))
+
 
