@@ -28,4 +28,9 @@
   ((z 'set-cdr!) new-value)
   z)
 
-(define a (cons (list 1 2 3 4) (list 5 6 7 8)))
+(define x (cons 1 2))
+
+(define z (cons x x))
+
+(set-car! (cdr z) 17)
+
