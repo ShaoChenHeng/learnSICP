@@ -2,10 +2,10 @@
   (let ((record (assoc key (cdr table))))
     (if record
 	(cdr record)
-	false)))
+	#f)))
 
 (define (assoc key records)
-  (cond ((null? records) false)
+  (cond ((null? records) #f)
 	((equal? key (caar records)) (car records))
 	(else
 	 (assoc key (cdr records)))))
